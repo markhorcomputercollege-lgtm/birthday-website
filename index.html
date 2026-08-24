@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Happy Birthday, Ainy 🌸 | 27 August</title>
+<meta name="description" content="A dreamy, cinematic birthday celebration for Ainy — 27 August 2026." />
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500&family=Alex+Brush&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+<link rel="stylesheet" href="styles.css" />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌸</text></svg>" />
+</head>
+<body>
+
+<!-- ================= AMBIENT BACKGROUND (fixed, behind everything) ================= -->
+<div class="sky" aria-hidden="true">
+  <div class="stars"></div>
+  <div class="moon"></div>
+  <div class="mountains"></div>
+  <div class="fireflies" id="fireflies"></div>
+</div>
+<canvas id="petals" aria-hidden="true"></canvas>
+
+<!-- ================= LOADER / GATE ================= -->
+<section id="gate" class="gate">
+  <div class="gate-inner">
+    <p class="eyebrow">a little something for</p>
+    <h1 class="gate-name">Ainy</h1>
+    <p class="gate-sub">close your eyes and make a wish...</p>
+    <button id="enterBtn" class="btn-glow">Open my celebration ✧</button>
+  </div>
+</section>
+
+<!-- ================= MAIN EXPERIENCE ================= -->
+<main id="experience" class="experience hidden">
+
+  <!-- NAV -->
+  <nav class="nav">
+    <span class="nav-brand">Ainy's Day ♡</span>
+    <button id="muteBtn" class="nav-mute" title="Toggle music" aria-label="Toggle music">🔈</button>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="hero">
+    <div class="hero-glow"></div>
+    <p class="eyebrow fade-up">Happy Birthday</p>
+    <h1 class="hero-title fade-up">
+      <span class="hero-title-main">Ainy</span>
+      <span class="hero-title-script">est. 27 August</span>
+    </h1>
+    <p class="hero-tagline fade-up">Dream. Sparkle. Celebrate.</p>
+
+    <div class="countdown fade-up" id="countdown" aria-live="polite">
+      <div class="cd-box"><span class="cd-num" id="cd-days">00</span><span class="cd-label">days</span></div>
+      <div class="cd-box"><span class="cd-num" id="cd-hours">00</span><span class="cd-label">hours</span></div>
+      <div class="cd-box"><span class="cd-num" id="cd-mins">00</span><span class="cd-label">mins</span></div>
+      <div class="cd-box"><span class="cd-num" id="cd-secs">00</span><span class="cd-label">secs</span></div>
+    </div>
+    <p class="countdown-caption fade-up" id="countdown-caption">until it's officially your day ✨</p>
+
+    <div class="scroll-cue" aria-hidden="true">
+      <span></span>
+      <p>scroll for the surprise</p>
+    </div>
+  </section>
+
+  <!-- LETTER -->
+  <section class="letter" id="letter">
+    <div class="letter-card reveal">
+      <p class="letter-kicker">a letter for the birthday girl</p>
+      <p class="letter-body">
+        Dearest Ainy, today the world gets a little brighter — because it's the day <em>you</em> arrived in it.
+        Every candle on this cake carries a wish for you: for the softest joys, the wildest dreams,
+        and a year that loves you as much as you love the people around you.
+      </p>
+      <p class="letter-body">
+        So put on your favourite playlist, twirl in something sparkly, and let yourself be celebrated.
+        This little corner of the internet was made just for you.
+      </p>
+      <p class="letter-sign">with all our love,<br /><span class="script">your people ♡</span></p>
+    </div>
+  </section>
+
+  <!-- CAKE / SIGNATURE INTERACTION -->
+  <section class="cake-section" id="cake-section">
+    <p class="eyebrow reveal">make a wish</p>
+    <h2 class="section-title reveal">Blow out the candles</h2>
+    <p class="section-sub reveal" id="cake-instructions">tap each flame — or blow into your mic ✧</p>
+
+    <div class="cake-stage reveal">
+      <div class="cake-wrap" id="cakeWrap">
+        <div class="candles" id="candles">
+          <!-- candles injected by JS -->
+        </div>
+        <div class="cake">
+          <div class="cake-plate"></div>
+          <div class="cake-tier cake-tier--top">
+            <span class="cake-icing"></span>
+          </div>
+          <div class="cake-tier cake-tier--bottom">
+            <span class="cake-drip"></span>
+            <span class="cake-name">Ainy</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <p class="cake-status" id="cakeStatus">5 candles left — make it count 🌙</p>
+    <button id="micBtn" class="btn-outline">🎙️ blow with your voice</button>
+  </section>
+
+  <!-- WISH REVEAL (hidden until candles are out) -->
+  <section class="wish-reveal" id="wishReveal">
+    <div class="wish-card reveal">
+      <p class="eyebrow">wish granted</p>
+      <h2 class="section-title">May this year bring you</h2>
+      <ul class="wish-list">
+        <li>✨ soft mornings & golden light</li>
+        <li>🌸 love that feels like home</li>
+        <li>🎓 every goal you're chasing, met with ease</li>
+        <li>🥂 friendships that celebrate you loudly</li>
+        <li>🌙 peace, even on the busy days</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- MEMORY GALLERY -->
+  <section class="gallery" id="gallery">
+    <p class="eyebrow reveal">moments</p>
+    <h2 class="section-title reveal">Our favourite memories of you</h2>
+    <p class="section-sub reveal">swap these placeholders for real photos — see the README ♡</p>
+
+    <div class="gallery-grid reveal">
+      <figure class="gallery-item gallery-item--tall"><img src="assets/photos/photo-1.jpg" alt="Memory 1" loading="lazy" /></figure>
+      <figure class="gallery-item"><img src="assets/photos/photo-2.jpg" alt="Memory 2" loading="lazy" /></figure>
+      <figure class="gallery-item"><img src="assets/photos/photo-3.jpg" alt="Memory 3" loading="lazy" /></figure>
+      <figure class="gallery-item"><img src="assets/photos/photo-4.jpg" alt="Memory 4" loading="lazy" /></figure>
+      <figure class="gallery-item gallery-item--tall"><img src="assets/photos/photo-5.jpg" alt="Memory 5" loading="lazy" /></figure>
+      <figure class="gallery-item"><img src="assets/photos/photo-6.jpg" alt="Memory 6" loading="lazy" /></figure>
+    </div>
+  </section>
+
+  <!-- WISHES WALL -->
+  <section class="wall" id="wall">
+    <p class="eyebrow reveal">the wishing wall</p>
+    <h2 class="section-title reveal">Leave Ainy a birthday note</h2>
+    <p class="section-sub reveal">saved right here on this device — sign it with your name ♡</p>
+
+    <form id="wishForm" class="wish-form reveal">
+      <input type="text" id="wishName" maxlength="30" placeholder="your name" required />
+      <textarea id="wishMessage" maxlength="220" rows="3" placeholder="write your birthday wish..." required></textarea>
+      <button type="submit" class="btn-glow">Pin my wish ✧</button>
+    </form>
+
+    <div class="wish-board" id="wishBoard"></div>
+  </section>
+
+  <!-- FINALE -->
+  <section class="finale" id="finale">
+    <div class="finale-inner reveal">
+      <p class="eyebrow">the final toast</p>
+      <h2 class="finale-title">Happy Birthday, <span class="script">Ainy</span></h2>
+      <p class="finale-sub">27.08.2026 — here's to you, today and always.</p>
+      <button id="confettiBtn" class="btn-glow">Celebrate again 🎉</button>
+    </div>
+    <p class="footer-note">made with ♡ for Ainy's birthday</p>
+  </section>
+
+</main>
+
+<audio id="bgm" loop preload="none">
+  <source src="assets/music.mp3" type="audio/mpeg" />
+</audio>
+
+<script src="script.js"></script>
+</body>
+</html>
